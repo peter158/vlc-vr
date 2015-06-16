@@ -1,7 +1,7 @@
 
 # VLC-VR 
 
-This is a movie player based on libvlc that can render to the Oculus Rift SDK on any platform
+This is a movie player based on libvlc that can render to the Oculus Rift on any platform
 supported by SDL2, OpenGL, and VLC.  It supports distortion rendering to planar, cylinder, and dome
 meshes and also renders side-by-side and over-under 3D formats.
 
@@ -27,8 +27,8 @@ $ vlc-vr [options] <video-path>
 * ESC: Quit the player.
 
 ### Compile from source:
-* Dependencies: sdl2 glew git g++ cmake
- * apt-get install git libsdl2-dev libglew-dev cmake
+* Dependencies: sdl2 glew git g++ cmake libvlc
+ * apt-get install git libsdl2-dev libglew-dev cmake libvlc
  * For older debian (squeeze or wheezy) follow: http://backports.debian.org/Instructions/
    * apt-get -t wheezy-backports install "libsdl2-dev"
 * Download the oculus rift sdk 0.4.4 (0.5 not supported yet), extract somewhere, and compile it:
