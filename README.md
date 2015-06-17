@@ -1,18 +1,16 @@
 
 # VLC-VR 
 
-This is a movie player based on libvlc that can render to the Oculus Rift on any platform
-supported by SDL2, OpenGL, and VLC.  It supports distortion rendering to planar, cylinder, and dome
-meshes and also renders side-by-side and over-under 3D formats.
+This is a movie player based on libvlc that can render to the Oculus Rift on any platform supported by SDL2, OpenGL, and VLC (Linux, Windows, OSX).  It supports distortion rendering to planar, cylinder, and dome meshes and also renders side-by-side and over-under 3D formats.
 
 # Usage
-$ vlc-vr [options] <video-path> 
+$ vlc-vr [options] video-path
 
 # Options
 * -f - Render to the rift on startup, otherwise use F2 or F9 to do this.
 * -d[1-3] - Sets the initial screen distortion mode. (1=None,2=Dome,3=Cylindrical) 
 * -s[1-3] - Sets the video source 3D stereo mode. (1=None,2=SBS,3=Over/Under)
-* example to play an SBS w/ Dome projection:  ./vlc-vr -f -d2 <file>
+* example to play an SBS w/ Dome projection:  ./vlc-vr -f -d2 file
 
 ## Settings
 * F2 or F9 toggles the window to the Rift and back (ONLY for extended mode).
