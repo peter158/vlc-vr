@@ -1188,58 +1188,56 @@ void PollEvent()
             SDL_GetMouseState(&x, &y);
             key = event.key.keysym.sym;
 
-
             switch(key) {
-                case SDLK_F2:
-                case SDLK_F9: ToggleHmdFullscreen(); break;
-                case SDLK_x: param.use_fxaa = !param.use_fxaa; break;
-                case SDLK_SPACE:
-                             {
-                                 libvlc_media_player_pause (vlc_media_player);
-                                 ovrHmd_RecenterPose(hmd);
-                                 break;
-                             }
-                case SDLK_ESCAPE: quit = true; break;
-                case SDLK_a: param.tv_size -= 0.1f; break;
-                case SDLK_d: param.tv_size += 0.1f; break;
-                case SDLK_w: param.tv_zoffset += 0.1; break;
-                case SDLK_s: param.tv_zoffset -= 0.1; break;
-                case SDLK_v: param.view_locked = !param.view_locked; break;
-                case SDLK_m: libvlc_audio_toggle_mute(vlc_media_player); break;
-                case SDLK_h: param.ipd_multiplier--; break;
-                case SDLK_l: param.ipd_multiplier++; break;
-                case SDLK_j: param.mesh_radius -= 0.1; break;
-                case SDLK_k: param.mesh_radius += 0.1; break;
-                case SDLK_1:
-                case SDLK_2:
-                case SDLK_3: {
-                    param.distortion = (distortion_t)(key - SDLK_1);
-                    float half_mesh = param.tv_size / 2;
-                    switch(param.distortion) {
-                    case DISTORTION_NONE:
-                        param.mesh_radius = half_mesh;
-                        break;
-                    case DISTORTION_DOME:
-                        param.mesh_radius = sqrt(2 * half_mesh * half_mesh);
-                        break;
-                    case DISTORTION_CYLINDER:
-                        param.mesh_radius = half_mesh;
-                        break;
-                    default: break;
-                    }
+            case SDLK_F2:
+            case SDLK_F9: ToggleHmdFullscreen(); break;
+            case SDLK_x: param.use_fxaa = !param.use_fxaa; break;
+            case SDLK_SPACE: {
+                libvlc_media_player_pause (vlc_media_player);
+                ovrHmd_RecenterPose(hmd);
+                break;
+            }
+            case SDLK_ESCAPE: quit = true; break;
+            case SDLK_a: param.tv_size -= 0.1f; break;
+            case SDLK_d: param.tv_size += 0.1f; break;
+            case SDLK_w: param.tv_zoffset += 0.1; break;
+            case SDLK_s: param.tv_zoffset -= 0.1; break;
+            case SDLK_v: param.view_locked = !param.view_locked; break;
+            case SDLK_m: libvlc_audio_toggle_mute(vlc_media_player); break;
+            case SDLK_h: param.ipd_multiplier--; break;
+            case SDLK_l: param.ipd_multiplier++; break;
+            case SDLK_j: param.mesh_radius -= 0.1; break;
+            case SDLK_k: param.mesh_radius += 0.1; break;
+            case SDLK_1:
+            case SDLK_2:
+            case SDLK_3: {
+                param.distortion = (distortion_t)(key - SDLK_1);
+                float half_mesh = param.tv_size / 2;
+                switch(param.distortion) {
+                case DISTORTION_NONE:
+                    param.mesh_radius = half_mesh;
                     break;
-                }
-                case SDLK_r: {
-                    param.stereo_mode = (stereo_mode_t)(((int)param.stereo_mode + 1) % MAX_STEREO_MODE);
+                case DISTORTION_DOME:
+                    param.mesh_radius = sqrt(2 * half_mesh * half_mesh);
                     break;
-                }
-                case SDLK_UP: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[0]); break;
-                case SDLK_DOWN: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[0]); break;
-                case SDLK_LEFT: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[1]); break;
-                case SDLK_RIGHT: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[1]); break;
-                case SDLK_PAGEUP: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[2]); break;
-                case SDLK_PAGEDOWN: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[2]); break;
+                case DISTORTION_CYLINDER:
+                    param.mesh_radius = half_mesh;
+                    break;
                 default: break;
+                }
+                break;
+            }
+            case SDLK_r: {
+                param.stereo_mode = (stereo_mode_t)(((int)param.stereo_mode + 1) % MAX_STEREO_MODE);
+                break;
+            }
+            case SDLK_UP: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[0]); break;
+            case SDLK_DOWN: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[0]); break;
+            case SDLK_LEFT: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[1]); break;
+            case SDLK_RIGHT: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[1]); break;
+            case SDLK_PAGEUP: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[2]); break;
+            case SDLK_PAGEDOWN: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[2]); break;
+            default: break;
             }
             cout << "ipd:" << param.ipd_multiplier << " tsize:" << param.tv_size << "  zoffset:" << param.tv_zoffset << "  mesh_radius:" << param.mesh_radius << endl;
 
