@@ -4,7 +4,12 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
-set(OVR_ROOT "/home/yottahz/download/src/ovr_sdk_linux_0.4.4")
+set(OVR_DESC "Root path of compiled Oculus Rift SDK 0.4.4")
+if(DEFINED ENV{OVR_ROOT})
+    set(OVR_ROOT $ENV{OVR_ROOT} CACHE PATH ${OVR_DESC})
+else()
+    set(OVR_ROOT "OVR_ROOT-NOTSET" CACHE PATH ${OVR_DESC})
+endif()
 include_directories(${OVR_ROOT}/LibOVR/Include ${OVR_ROOT}/LibOVR/Src)
 
 INCLUDE(FindPkgConfig)
