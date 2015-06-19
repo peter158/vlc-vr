@@ -10,7 +10,7 @@ $ vlc-vr [options] video-path
 * -f - Render to the rift on startup, otherwise use F2 or F9 to do this.
 * -d[1-3] - Sets the initial screen distortion mode. (1=None,2=Dome,3=Cylindrical) 
 * -s[1-3] - Sets the video source 3D stereo mode. (1=None,2=SBS,3=Over/Under)
-* example to play an SBS w/ Dome projection:  ./vlc-vr -f -d2 file
+* example to play an SBS w/ Dome projection:  ./vlc-vr -f -s2 -d2 file
 
 ## Settings
 * F2 or F9 toggles the window to the Rift and back (ONLY for extended mode).
