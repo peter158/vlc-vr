@@ -1192,11 +1192,9 @@ void PollEvent()
             case SDLK_F2:
             case SDLK_F9: ToggleHmdFullscreen(); break;
             case SDLK_x: param.use_fxaa = !param.use_fxaa; break;
-            case SDLK_SPACE: {
-                libvlc_media_player_pause (vlc_media_player);
-                ovrHmd_RecenterPose(hmd);
-                break;
-            }
+            case SDLK_LSHIFT:
+            case SDLK_RSHIFT: ovrHmd_RecenterPose(hmd); break;
+            case SDLK_SPACE: libvlc_media_player_pause (vlc_media_player); break;
             case SDLK_ESCAPE: quit = true; break;
             case SDLK_a: param.tv_size -= 0.1f; break;
             case SDLK_d: param.tv_size += 0.1f; break;

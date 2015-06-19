@@ -14,12 +14,13 @@ $ vlc-vr [options] video-path
 
 ## Settings
 * F2 or F9 toggles the window to the Rift and back (ONLY for extended mode).
-* SPACE: recenter the view to the current HMD orientation.
+* SPACE: Pauses video.
+* SHIFT: Recenter the view to the current HMD orientation.
 * Right/Left: Skip forward/backward in the video.
 * Up/Down: Skip forward/backward fast.
 * PgUp/PgDn: Skip forward/backward superfast.
 * r: cycle through different modes 3D (None -> SBS -> Over/Under).
-* w/s: increase/decrease size of screen projected screen.
+* w/s: increase/decrease size of projected screen.
 * a/d: increase/decrease distance of screen from viewer.
 * '1,2,3' change screen distortion modes (None -> Dome -> Cylinder).
 * ESC: Quit the player.
