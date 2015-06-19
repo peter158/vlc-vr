@@ -114,6 +114,13 @@ struct _param {
     bool    view_locked;
 } param;
 
+typedef enum {
+    ASPECT_AUTO,
+    ASPECT_4_BY_3,
+    ASPECT_16_BY_9,
+    MAX_ASPECT_MODE
+} aspect_ratio_mode_t;
+
 struct _video {
     Uint32 width;
     Uint32 height;
@@ -127,6 +134,8 @@ struct _video {
     GLuint glVideoHeight;
     GLuint glVideoPitch;
     unsigned int bpp;
+    float aspect_ratio; // auto-detected aspect ratio.
+    aspect_ratio_mode_t aspect_ratio_mode;
 } video;
 
 void setDefaults() {
@@ -165,7 +174,6 @@ void setDefaults() {
 #else
     video.bpp = 32;
 #endif
-    // TODO not sure what to do here..
     video.width = 0;
     video.height = 0;
     video.updateFrame = false;
@@ -178,6 +186,8 @@ void setDefaults() {
     video.glVideoWidth = 0;
     video.glVideoHeight = 0;
     video.glVideoPitch = 0;
+    video.aspect_ratio = 0;
+    video.aspect_ratio_mode = ASPECT_AUTO;
 }
 
 #define NEAR_CLIP_DIST 0.1
@@ -1078,7 +1088,7 @@ void RenderFrame()
 
         float d = param.tv_size;
 
-        glScalef(video.width/video.height, 1, 1);
+        glScalef(video.aspect_ratio, 1, 1);
         draw_mesh(d, mesh_nx, mesh_ny, texLeft, texRight, texUp, texDown);
 
         // TODO;
@@ -1229,6 +1239,16 @@ void PollEvent()
                 param.stereo_mode = (stereo_mode_t)(((int)param.stereo_mode + 1) % MAX_STEREO_MODE);
                 break;
             }
+            case SDLK_t: {
+                video.aspect_ratio_mode = (aspect_ratio_mode_t)(((int)video.aspect_ratio_mode+1) % MAX_ASPECT_MODE);
+                switch(video.aspect_ratio_mode) {
+                    case ASPECT_4_BY_3: video.aspect_ratio = 4.f / 3.f; break;
+                    case ASPECT_16_BY_9: video.aspect_ratio = 16.f / 9.f; break;
+                    default:
+                    case ASPECT_AUTO: video.aspect_ratio = video.width / video.height; break;
+                }
+                break;
+            }
             case SDLK_UP: libvlc_media_player_set_time(vlc_media_player, curtime + seekspeed[0]); break;
             case SDLK_DOWN: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[0]); break;
             case SDLK_LEFT: libvlc_media_player_set_time(vlc_media_player, curtime - seekspeed[1]); break;
@@ -1351,6 +1371,8 @@ int main(int argc, char *argv[])
     libvlc_video_set_format (vlc_media_player, "RV32", video.width, video.height, video.width*(video.bpp/8));
 #endif
     libvlc_video_set_callbacks (vlc_media_player, lock, unlock, display, NULL);
+
+    video.aspect_ratio = video.width / video.height;
 
     while(!quit && libvlc_media_player_get_state(vlc_media_player) != libvlc_Ended) {
         PollEvent();

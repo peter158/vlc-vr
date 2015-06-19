@@ -19,7 +19,8 @@ $ vlc-vr [options] video-path
 * Right/Left: Skip forward/backward in the video.
 * Up/Down: Skip forward/backward fast.
 * PgUp/PgDn: Skip forward/backward superfast.
-* r: cycle through different modes 3D (None -> SBS -> Over/Under).
+* r: cycle different 3D stereo modes: (None -> SBS -> Over/Under).
+* t: cycle projection aspect ratios: (Auto -> 4:3 -> 16:9).
 * w/s: increase/decrease size of projected screen.
 * a/d: increase/decrease distance of screen from viewer.
 * '1,2,3' change screen distortion modes (None -> Dome -> Cylinder).
