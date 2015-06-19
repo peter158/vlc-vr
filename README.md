@@ -51,4 +51,21 @@ make
 * Use F2 or F9 key to toggle to the rift and back.
 * Sometimes if the rift is turned off and back on while Xorg is running, judder starts and I havn't found a way to make it go away without an X shutdown and restart w/ the Rift on.
 
+## Things Needing Attention
+* "Dome" projection isn't correct.  Currently it's just a warped square mesh.
+* If it fails to start with: 'Error: [Context] Unable to obtain x11 visual from context'
+ * Quick fix: OVR_FBCONFIG_OVERRIDE=1 ./TuxRacerVR
+ * Occurs when using the xf86-video-ati open source radeon driver. See the following for a patch to the Oculus SDK:
+ * https://forums.oculus.com/viewtopic.php?t=16664#p252973
+
+## Contact:
+* IRC: I'm metric on irc.freenode.net
+* Github: http://github.com/jdtaylor
+* Email: j.douglas.taylor@gmail.com
+* My public key can be found at http://jdtaylor.org
+
+## Donations:
+* If you like what you see and want to support more Free Software for VR; please send bitcoin: 12ptLNTGD16itaG9mXQxYRaExwXr3aVyFd
+![TuxRacerVR BTC Donation QR Code](http://jdtaylor.org/tuxracer-vr-btc-donations_128.png)
+
 
