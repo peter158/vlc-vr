@@ -25,7 +25,7 @@ target_link_libraries(vlc-vr
     ${SDL2_LIBS} -L/usr/lib64 -lSDL2 -lpthread
     ${VLC_LIBS} -lvlc
     ${GLEW_LIBS} -lGLEW -lGLU -lGL
-    -L${OVR_ROOT}/LibOVR/Lib/Linux/Release/x86_64 -lXrandr -lXinerama -lovr -lX11 -lrt
+    -L${OVR_ROOT}/LibOVR/Lib/Linux/Release/x86_64 -lovr -lpthread -lXrandr -lXinerama -lX11 -lrt
 )
 add_dependencies(vlc-vr shaders) # shaders converted to C++ header files
 
